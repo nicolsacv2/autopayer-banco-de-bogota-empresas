@@ -5,12 +5,14 @@ import time
 
 import pandas as pd
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 from app.utils.format_dataframe import group_data
-from app.settings import URL, DOWNLOAD_FILEPATH
+from app.settings import URL, DOWNLOAD_FILEPATH, CHROME_DRIVER_PATH #, CHROME_BIN_PATH
 
 class AutoPayer:
 
@@ -18,7 +20,10 @@ class AutoPayer:
         if pending_payments_dataframe is not None:
             self.grouped_dataframe = group_data(pending_payments_dataframe)
         self.nit = nit
-        self.driver = webdriver.Chrome()
+        # options = Options()
+        # options.binary_location = CHROME_BIN_PATH
+        service = Service(CHROME_DRIVER_PATH)
+        self.driver = webdriver.Chrome(service=service)#, options=options)
         self.wait = WebDriverWait(self.driver, 600)
 
     def login(self) -> None:
