@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "autopayer-banco-de-bogota-empresas"
+version = "0.1.0"
+description = ""
+authors = ["niacevedo <nicolas.acevedo@mercadolibre.com.co>"]
+readme = "README.md"
+packages = [{include = "autopayer_banco_de_bogota_empresas"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^2.0.2"
+gspread = "^5.9.0"
+selenium = "^4.10.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
