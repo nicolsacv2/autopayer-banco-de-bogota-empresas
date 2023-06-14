@@ -1,7 +1,6 @@
 URL = "https://www.bancodebogota.com/wps/portal/banco-de-bogota/bogota/empresas"
 SHEET_ID = "1CV--eYfqx8rVZ0yQ_QCwAPs5QKOy0RwdVd0aqgZRl4c"
 SHEET_NAME = "Hoja1"
-DOWNLOAD_FILEPATH = "/Users/niacevedo/Downloads/"
 GCP_CREDENTIALS_PATH = "credentials.json"
 CHROME_DRIVER_PATH = "chromedriver.exe"
 CHROME_BIN_PATH = "chrome.exe"

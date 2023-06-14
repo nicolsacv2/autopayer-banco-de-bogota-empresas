@@ -2,6 +2,7 @@ import os
 from typing import Union
 from getpass import getpass
 import time
+from pathlib import Path
 
 import pandas as pd
 from selenium import webdriver
@@ -12,7 +13,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 from app.utils.format_dataframe import group_data
-from app.settings import URL, DOWNLOAD_FILEPATH, CHROME_DRIVER_PATH #, CHROME_BIN_PATH
+from app.settings import URL, CHROME_DRIVER_PATH #, CHROME_BIN_PATH
+
+DOWNLOAD_FILEPATH = str(Path.home()).replace("\\", "/") +  "/Downloads/"
 
 class AutoPayer:
 
@@ -20,10 +23,10 @@ class AutoPayer:
         if pending_payments_dataframe is not None:
             self.grouped_dataframe = group_data(pending_payments_dataframe)
         self.nit = nit
-        # options = Options()
-        # options.binary_location = CHROME_BIN_PATH
+        options = Options()
+        options.add_experimental_option("detach", True)
         service = Service(CHROME_DRIVER_PATH)
-        self.driver = webdriver.Chrome(service=service)#, options=options)
+        self.driver = webdriver.Chrome(service=service, options=options)
         self.wait = WebDriverWait(self.driver, 600)
 
     def login(self) -> None:
